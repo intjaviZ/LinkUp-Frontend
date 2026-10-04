@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from "react-router";
+import Button from "@/components/ui/Button";
+import { useAuth } from "@/hooks/useAuth";
 
 const links = [
   { to: "/asesores", label: "Catálogo" },
@@ -8,10 +10,12 @@ const links = [
 ];
 
 export default function AppLayout() {
+  const { user, logout } = useAuth();
+
   return (
     <div className="min-h-screen bg-slate-50">
       <header className="border-b bg-white">
-        <nav className="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3">
+        <nav className="mx-auto flex max-w-6xl flex-wrap items-center gap-6 px-4 py-3">
           <span className="text-lg font-bold">LinkUp</span>
           {links.map(({ to, label }) => (
             <NavLink
@@ -24,6 +28,10 @@ export default function AppLayout() {
               {label}
             </NavLink>
           ))}
+          <div className="ml-auto flex items-center gap-3 text-sm">
+            <span className="text-slate-600">{user.nombre}</span>
+            <Button variant="secondary" onClick={logout}>Salir</Button>
+          </div>
         </nav>
       </header>
       <main className="mx-auto max-w-6xl p-4">

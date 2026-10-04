@@ -1,11 +1,13 @@
 import { Navigate, Outlet, useLocation } from "react-router";
-import { hasSession } from "@/utils/session";
+import Spinner from "@/components/ui/Spinner";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function ProtectedRoute() {
+  const { isAuthenticated, initializing } = useAuth();
   const location = useLocation();
-  return hasSession() ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" replace state={{ from: location }} />
-  );
+
+  if (initializing) {
+    return <div className="grid min-h-screen place-items-center"><Spinner /></div>;
+  }
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace state={{ from: location }} />;
 }

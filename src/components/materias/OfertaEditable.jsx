@@ -18,21 +18,32 @@ export default function OfertaEditable({ oferta, onChanged }) {
 
   return (
     <Card className="space-y-3">
-      <div className="flex flex-wrap items-end gap-4">
-        <div className="min-w-48 flex-1 space-y-1">
-          <p className="font-semibold">{oferta.materia.nombre}</p>
-          <Badge className={oferta.activo ? "bg-green-100 text-green-800" : "bg-slate-200 text-slate-700"}>
-            {oferta.activo ? "Activa" : "Inactiva"}
-          </Badge>
+      <div className="space-y-1">
+        <p className="font-semibold">{oferta.materia.nombre}</p>
+        <Badge className={oferta.activo ? "bg-green-100 text-green-800" : "bg-slate-200 text-slate-700"}>
+          {oferta.activo ? "Activa" : "Inactiva"}
+        </Badge>
+      </div>
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-[200px] flex-1">
+          <InputField
+            label="Precio por hora"
+            type="number"
+            min={1}
+            step="0.01"
+            value={precio}
+            onChange={(event) => setPrecio(event.target.value)}
+          />
         </div>
-        <InputField
-          label="Precio por hora" type="number" min={1} step="0.01"
-          value={precio} onChange={(event) => setPrecio(event.target.value)}
-        />
-        <Button variant="secondary" loading={loading} onClick={() => save({ precio_hora: precio })}>
+        <Button variant="secondary" loading={loading} onClick={() => save({ precio_hora: precio })} className="w-full sm:w-[160px]">
           Guardar precio
         </Button>
-        <Button variant={oferta.activo ? "danger" : "primary"} loading={loading} onClick={() => save({ activo: !oferta.activo })}>
+        <Button
+          variant={oferta.activo ? "danger" : "primary"}
+          loading={loading}
+          onClick={() => save({ activo: !oferta.activo })}
+          className="w-full sm:w-[160px]"
+        >
           {oferta.activo ? "Desactivar" : "Reactivar"}
         </Button>
       </div>

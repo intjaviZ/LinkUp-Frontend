@@ -16,18 +16,21 @@ export default function OfertaCard({ oferta }) {
           {materia.es_tronco_comun ? "Tronco común" : materia.carrera} · Cuatrimestre {materia.cuatrimestre}
         </p>
       </div>
-      <div className="flex items-center justify-between gap-2">
-        <Link to={`/asesores/${asesor.id}`} className="font-medium text-indigo-600 hover:underline">
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <Link to={`/asesores/${asesor.id}`} className="font-medium text-indigo-600 underline-offset-2 hover:underline">
           {asesor.nombre}
         </Link>
         <Rating value={oferta.rating_promedio} total={oferta.total_resenas} />
       </div>
       <SkillChips skills={asesor.skills} />
-      <div className="mt-auto flex items-center justify-between">
+      <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <span className="text-lg font-bold">
-          {formatMoney(oferta.precio_hora)}<span className="text-xs font-normal text-slate-500">/hora</span>
+          {formatMoney(oferta.precio_hora)}
+          <span className="text-xs font-normal text-slate-500">/hora</span>
         </span>
-        <ButtonLink to={`/asesorias/nueva/${oferta.id}`}>Solicitar</ButtonLink>
+        <ButtonLink to={`/asesorias/nueva/${oferta.id}`} className="w-full sm:w-auto">
+          Solicitar
+        </ButtonLink>
       </div>
     </Card>
   );

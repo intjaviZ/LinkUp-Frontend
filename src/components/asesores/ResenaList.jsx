@@ -6,7 +6,7 @@ export default function ResenaList({ state }) {
   return (
     <AsyncBoundary state={state}>
       {state.data?.length ? (
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {state.data.map((resena) => <ResenaItem key={resena.id} resena={resena} />)}
         </div>
       ) : (

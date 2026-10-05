@@ -28,29 +28,56 @@ export default function RegisterPage() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h1 className="text-2xl font-bold">Crear cuenta</h1>
+      <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Crear cuenta</h1>
       <ErrorAlert error={error ?? carreras.error} />
-      <InputField label="Nombre" name="nombre" value={values.nombre} onChange={handleChange} error={errors.nombre} required />
-      <InputField label="Email" type="email" name="email" value={values.email} onChange={handleChange} error={errors.email} required />
+      <InputField label="Nombre" name="nombre" autoComplete="name" value={values.nombre} onChange={handleChange} error={errors.nombre} required />
+      <InputField label="Email" type="email" name="email" autoComplete="email" value={values.email} onChange={handleChange} error={errors.email} required />
       <InputField
-        label="Contraseña" type="password" name="password" value={values.password} onChange={handleChange}
-        error={errors.password} hint="Mínimo 8 caracteres, no demasiado común ni solo números." required
+        label="Contraseña"
+        type="password"
+        name="password"
+        autoComplete="new-password"
+        value={values.password}
+        onChange={handleChange}
+        error={errors.password}
+        hint="Mínimo 8 caracteres, no demasiado común ni solo números."
+        required
       />
       <SelectField label="Carrera" name="plan_estudiantil" value={values.plan_estudiantil} onChange={handleChange} error={errors.plan_estudiantil} required>
         <option value="">Selecciona tu carrera</option>
-        {carreras.data?.map((c) => <option key={c.id} value={c.id}>{c.carrera}</option>)}
+        {carreras.data?.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.carrera}
+          </option>
+        ))}
       </SelectField>
       <InputField
-        label="Cuatrimestre actual" type="number" name="cuatrimestre_actual" min={1} max={carrera?.numero_cuatrimestres}
-        value={values.cuatrimestre_actual} onChange={handleChange} error={errors.cuatrimestre_actual} required
+        label="Cuatrimestre actual"
+        type="number"
+        name="cuatrimestre_actual"
+        min={1}
+        max={carrera?.numero_cuatrimestres}
+        value={values.cuatrimestre_actual}
+        onChange={handleChange}
+        error={errors.cuatrimestre_actual}
+        required
       />
       <TextareaField
-        label="Biografía (opcional)" name="biografia" value={values.biografia} onChange={handleChange}
-        error={errors.biografia} hint="Si ofreces asesorías, esto es lo que verán los estudiantes."
+        label="Biografía (opcional)"
+        name="biografia"
+        value={values.biografia}
+        onChange={handleChange}
+        error={errors.biografia}
+        hint="Si ofreces asesorías, esto es lo que verán los estudiantes."
       />
-      <Button type="submit" loading={loading} className="w-full">Registrarme</Button>
+      <Button type="submit" loading={loading} className="w-full">
+        Registrarme
+      </Button>
       <p className="text-center text-sm text-slate-600">
-        ¿Ya tienes cuenta? <Link to="/login" className="text-indigo-600 hover:underline">Inicia sesión</Link>
+        ¿Ya tienes cuenta?{" "}
+        <Link to="/login" className="text-indigo-600 underline-offset-2 hover:underline">
+          Inicia sesión
+        </Link>
       </p>
     </form>
   );

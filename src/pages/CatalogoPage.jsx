@@ -23,9 +23,9 @@ export default function CatalogoPage() {
 
       <AsyncBoundary state={ofertas}>
         {ofertas.data?.results.length ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {ofertas.data.results.map((oferta) => <OfertaCard key={oferta.id} oferta={oferta} />)}
-          </div>
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        {ofertas.data.results.map((oferta) => <OfertaCard key={oferta.id} oferta={oferta} />)}
+      </div>
         ) : (
           <EmptyState>No hay asesores que coincidan con esos filtros.</EmptyState>
         )}

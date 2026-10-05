@@ -28,17 +28,32 @@ export default function PublicarMateriaForm({ registradas, onPublished }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-[2fr_1fr_auto] sm:items-end">
+    <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-[2fr_1fr_auto] sm:items-end">
       <SelectField label="Materia" name="materia" value={values.materia} onChange={handleChange} error={errors.materia} required>
         <option value="">Selecciona una materia</option>
-        {disponibles.map((m) => <option key={m.id} value={m.id}>{m.nombre} (cuat. {m.cuatrimestre})</option>)}
+        {disponibles.map((m) => (
+          <option key={m.id} value={m.id}>
+            {m.nombre} (cuat. {m.cuatrimestre})
+          </option>
+        ))}
       </SelectField>
       <InputField
-        label="Precio por hora" type="number" name="precio_hora" min={1} step="0.01"
-        value={values.precio_hora} onChange={handleChange} error={errors.precio_hora} required
+        label="Precio por hora"
+        type="number"
+        name="precio_hora"
+        min={1}
+        step="0.01"
+        value={values.precio_hora}
+        onChange={handleChange}
+        error={errors.precio_hora}
+        required
       />
-      <Button type="submit" loading={loading}>Publicar</Button>
-      <div className="sm:col-span-3"><ErrorAlert error={error ?? materias.error} /></div>
+      <Button type="submit" loading={loading} className="w-full sm:w-auto">
+        Publicar
+      </Button>
+      <div className="sm:col-span-3">
+        <ErrorAlert error={error ?? materias.error} />
+      </div>
     </form>
   );
 }

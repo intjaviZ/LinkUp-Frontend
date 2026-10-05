@@ -23,7 +23,7 @@ export default function AsesoriaAcciones({ asesoria, onChanged }) {
   return (
     <Card className="space-y-3">
       <h2 className="font-semibold">Acciones</h2>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         {asesoria.transiciones_permitidas.map((estado) => (
           <Button
             key={estado}
@@ -31,6 +31,7 @@ export default function AsesoriaAcciones({ asesoria, onChanged }) {
             loading={loading && pendiente === estado}
             disabled={loading}
             onClick={() => handleClick(estado)}
+            className="w-full sm:w-auto"
           >
             {ACCIONES_ESTADO[estado].label}
           </Button>

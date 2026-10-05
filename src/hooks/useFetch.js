@@ -12,11 +12,21 @@ export function useFetch(fetcher, deps = []) {
 
   useEffect(() => {
     let cancelled = false; // evita pintar respuestas viejas
-    setState((prev) => ({ ...prev, loading: true, error: null }));
-    fetcherRef
-      .current()
-      .then((data) => !cancelled && setState({ data, loading: false, error: null }))
-      .catch((error) => !cancelled && setState((prev) => ({ ...prev, loading: false, error })));
+    const run = async () => {
+      if (cancelled) return;
+      setState((prev) => ({ ...prev, loading: true, error: null }));
+      try {
+        const data = await fetcherRef.current();
+        if (!cancelled) {
+          setState({ data, loading: false, error: null });
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setState((prev) => ({ ...prev, loading: false, error }));
+        }
+      }
+    };
+    run();
     return () => {
       cancelled = true;
     };

@@ -5,9 +5,9 @@ import SkillChips from "@/components/shared/SkillChips";
 export default function AsesorHeader({ asesor }) {
   return (
     <Card className="space-y-3">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">{asesor.nombre}</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{asesor.nombre}</h1>
           <p className="text-sm text-slate-500">
             {asesor.carrera ?? "Sin carrera"} · Cuatrimestre {asesor.cuatrimestre_actual}
           </p>

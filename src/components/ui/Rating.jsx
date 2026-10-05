@@ -1,7 +1,7 @@
 export default function Rating({ value, total }) {
   if (value == null) return <span className="text-sm text-slate-400">Sin reseñas</span>;
   return (
-    <span className="text-sm text-amber-600">
+    <span className="text-sm text-amber-600" aria-label={`Calificación ${value.toFixed(1)} de 5, ${total} reseñas`}>
       ★ {value.toFixed(1)} <span className="text-slate-500">({total})</span>
     </span>
   );

@@ -35,9 +35,9 @@ export default function MisAsesoriasPage() {
 
       <AsyncBoundary state={asesorias}>
         {asesorias.data?.results.length ? (
-          <div className="space-y-3">
-            {asesorias.data.results.map((asesoria) => <AsesoriaCard key={asesoria.id} asesoria={asesoria} />)}
-          </div>
+      <div className="space-y-2 sm:space-y-3">
+        {asesorias.data.results.map((asesoria) => <AsesoriaCard key={asesoria.id} asesoria={asesoria} />)}
+      </div>
         ) : (
           <EmptyState>No hay asesorías con estos filtros.</EmptyState>
         )}

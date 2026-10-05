@@ -32,11 +32,13 @@ export default function SkillsSection() {
 
   return (
     <div className="space-y-4">
-      <form onSubmit={handleAdd} className="flex items-end gap-3">
+      <form onSubmit={handleAdd} className="flex flex-col gap-3 sm:flex-row sm:items-end">
         <div className="flex-1">
           <InputField label="Nueva skill o tema clave" name="skill" value={values.skill} onChange={handleChange} maxLength={100} required />
         </div>
-        <Button type="submit" loading={add.loading}>Agregar</Button>
+        <Button type="submit" loading={add.loading} className="w-full sm:w-auto">
+          Agregar
+        </Button>
       </form>
       <ErrorAlert error={add.error ?? remove.error} />
 

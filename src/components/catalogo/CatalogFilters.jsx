@@ -27,15 +27,23 @@ export default function CatalogFilters({ params, onApply }) {
 
   return (
     <Card>
-      <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <InputField label="Buscar (asesor o materia)" name="search" value={values.search} onChange={handleChange} />
         <SelectField label="Carrera" name="carrera_id" value={values.carrera_id} onChange={handleCarrera} hint="Incluye tronco común">
           <option value="">Todas</option>
-          {carreras.data?.map((c) => <option key={c.id} value={c.id}>{c.carrera}</option>)}
+          {carreras.data?.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.carrera}
+            </option>
+          ))}
         </SelectField>
         <SelectField label="Materia" name="materia_id" value={values.materia_id} onChange={handleChange}>
           <option value="">Todas</option>
-          {materias.data?.map((m) => <option key={m.id} value={m.id}>{m.nombre}</option>)}
+          {materias.data?.map((m) => (
+            <option key={m.id} value={m.id}>
+              {m.nombre}
+            </option>
+          ))}
         </SelectField>
         <InputField label="Cuatrimestre" type="number" min={1} name="cuatrimestre" value={values.cuatrimestre} onChange={handleChange} />
         <SelectField label="Tipo de materia" name="tronco_comun" value={values.tronco_comun} onChange={handleChange}>
@@ -57,9 +65,11 @@ export default function CatalogFilters({ params, onApply }) {
           <option value="-precio_hora">Precio: mayor a menor</option>
           <option value="-rating_promedio">Mejor calificados</option>
         </SelectField>
-        <div className="flex gap-2 sm:col-span-2 lg:col-span-4">
+        <div className="flex flex-wrap gap-2 sm:col-span-2 lg:col-span-4">
           <Button type="submit">Filtrar</Button>
-          <Button variant="secondary" onClick={handleClear}>Limpiar</Button>
+          <Button variant="secondary" onClick={handleClear}>
+            Limpiar
+          </Button>
         </div>
       </form>
     </Card>

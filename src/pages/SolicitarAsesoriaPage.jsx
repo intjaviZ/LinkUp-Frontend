@@ -51,10 +51,13 @@ export default function SolicitarAsesoriaPage() {
   return (
     <AsyncBoundary state={oferta}>
       {data && (
-        <div className="mx-auto max-w-xl space-y-4">
-          <h1 className="text-2xl font-bold">Solicitar asesoría</h1>
-          <Card>
-            <p className="font-semibold">{data.materia.nombre}</p>
+        <div className="mx-auto max-w-2xl space-y-4 sm:space-y-5">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Solicitar asesoría</h1>
+            <p className="mt-1 text-sm text-slate-500 sm:text-base">Revisa el detalle y confirma el horario para agendarla.</p>
+          </div>
+          <Card className="space-y-1">
+            <p className="font-semibold text-lg">{data.materia.nombre}</p>
             <p className="text-sm text-slate-500">
               Asesor: {data.asesor.nombre} · {formatMoney(data.precio_hora)}/hora
             </p>

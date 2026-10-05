@@ -32,21 +32,33 @@ export default function PerfilForm({ user, onSaved }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <p className="text-sm text-slate-500">
-        {user.email} · {user.carrera ?? "Sin carrera"}
-      </p>
-      <InputField label="Nombre" name="nombre" value={values.nombre} onChange={handleChange} error={errors.nombre} required />
+      <div className="rounded-lg bg-slate-50 p-3 text-sm text-slate-600 sm:p-4">
+        <p>{user.email}</p>
+        <p>{user.carrera ?? "Sin carrera"}</p>
+      </div>
+      <InputField label="Nombre" name="nombre" autoComplete="name" value={values.nombre} onChange={handleChange} error={errors.nombre} required />
       <InputField
-        label="Cuatrimestre actual" type="number" min={1} name="cuatrimestre_actual"
-        value={values.cuatrimestre_actual} onChange={handleChange} error={errors.cuatrimestre_actual}
+        label="Cuatrimestre actual"
+        type="number"
+        min={1}
+        name="cuatrimestre_actual"
+        value={values.cuatrimestre_actual}
+        onChange={handleChange}
+        error={errors.cuatrimestre_actual}
       />
       <TextareaField
-        label="Biografía" name="biografia" value={values.biografia} onChange={handleChange}
-        error={errors.biografia} hint="Es la descripción que ven los estudiantes cuando ofreces asesorías."
+        label="Biografía"
+        name="biografia"
+        value={values.biografia}
+        onChange={handleChange}
+        error={errors.biografia}
+        hint="Es la descripción que ven los estudiantes cuando ofreces asesorías."
       />
       <ErrorAlert error={error} />
       {saved && <Alert variant="success">Perfil actualizado.</Alert>}
-      <Button type="submit" loading={loading}>Guardar cambios</Button>
+      <Button type="submit" loading={loading}>
+        Guardar cambios
+      </Button>
     </form>
   );
 }

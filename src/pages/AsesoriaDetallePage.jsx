@@ -12,15 +12,15 @@ export default function AsesoriaDetallePage() {
   const asesoria = state.data;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-4">
-      <Link to="/asesorias" className="text-sm text-indigo-600 hover:underline">← Volver a mis asesorías</Link>
+    <div className="mx-auto max-w-2xl space-y-3 sm:space-y-4">
+      <Link to="/asesorias" className="text-sm text-indigo-600 underline-offset-2 hover:underline">← Volver a mis asesorías</Link>
       <AsyncBoundary state={state}>
         {asesoria && (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <AsesoriaInfo asesoria={asesoria} />
             <AsesoriaAcciones asesoria={asesoria} onChanged={state.reload} />
             {asesoria.resenia && (
-              <section className="space-y-2">
+              <section className="space-y-2 sm:space-y-3">
                 <h2 className="font-semibold">Reseña</h2>
                 <ResenaItem resena={asesoria.resenia} />
               </section>

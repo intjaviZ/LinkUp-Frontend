@@ -17,13 +17,13 @@ export default function AsesorPerfilPage() {
   return (
     <AsyncBoundary state={perfil}>
       {asesor && (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <AsesorHeader asesor={asesor} />
-          <section className="space-y-3">
+          <section className="space-y-2 sm:space-y-3">
             <h2 className="text-lg font-semibold">Materias que ofrece</h2>
             <OfertasDelAsesor materias={asesor.materias} puedeSolicitar={asesor.id !== user.id} />
           </section>
-          <section className="space-y-3">
+          <section className="space-y-2 sm:space-y-3">
             <h2 className="text-lg font-semibold">Reseñas</h2>
             <ResenaList state={resenas} />
           </section>
